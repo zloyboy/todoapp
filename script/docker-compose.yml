@@ -1,0 +1,25 @@
+version: "3.0"
+
+services:
+  db:
+    container_name: pg_db
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+    volumes:
+      - ./pg:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@mail.com
+      PGADMIN_DEFAULT_PASSWORD: user
+    ports:
+      - "81:80"
+
+# migrate -database postgres://user:user@localhost:5432/user?sslmode=disable -path . up
+# migrate -database postgres://user:user@localhost:5432/user?sslmode=disable -path . down
