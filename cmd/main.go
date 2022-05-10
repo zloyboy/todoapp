@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	_ "github.com/lib/pq"
 	todo "github.com/zloyboy/todoapp"
 	"github.com/zloyboy/todoapp/config"
 	"github.com/zloyboy/todoapp/internal/handler"
@@ -12,7 +13,12 @@ import (
 
 func main() {
 	config := config.ReadConfig("./config.json")
-	repos := reposit.NewReposit()
+
+	db, err := reposit.NewPostgresDB(config)
+	if err != nil {
+		log.Fatal("init db error")
+	}
+	repos := reposit.NewReposit(db)
 	services := service.NewService(repos)
 	handler := handler.NewHandler(services)
 

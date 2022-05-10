@@ -1,5 +1,7 @@
 package reposit
 
+import "github.com/jmoiron/sqlx"
+
 type Authorization interface {
 }
 
@@ -15,6 +17,6 @@ type Reposit struct {
 	TodoItem
 }
 
-func NewReposit() *Reposit {
+func NewReposit(db *sqlx.DB) *Reposit {
 	return &Reposit{}
 }

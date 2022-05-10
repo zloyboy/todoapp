@@ -8,6 +8,12 @@ import (
 
 type Config struct {
 	BindPort string `json:"bindport"`
+	Host     string `json:"host"`
+	Port     string `json:"port"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	DBname   string `json:"dbname"`
+	SSLmode  string `json:"sslmode"`
 }
 
 func ReadConfig(path string) Config {

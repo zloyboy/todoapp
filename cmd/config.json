@@ -1,3 +1,9 @@
 {
-  "bindport":"8080"
+  "bindport": "8080",
+  "host":     "localhost",
+  "port":     "5432",
+  "username": "user",
+  "password": "user",
+  "dbname":   "user",
+  "sslmode":  "disable"
 }
