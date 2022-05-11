@@ -1,8 +1,12 @@
 package reposit
 
-import "github.com/jmoiron/sqlx"
+import (
+	"github.com/jmoiron/sqlx"
+	todo "github.com/zloyboy/todoapp"
+)
 
 type Authorization interface {
+	CreateUser(user todo.User) (int, error)
 }
 
 type TodoList interface {
@@ -18,5 +22,7 @@ type Reposit struct {
 }
 
 func NewReposit(db *sqlx.DB) *Reposit {
-	return &Reposit{}
+	return &Reposit{
+		Authorization: NewAuthPostgres(db),
+	}
 }

@@ -2,6 +2,7 @@ package todo
 
 import (
 	"context"
+	"net"
 	"net/http"
 	"time"
 )
@@ -18,8 +19,9 @@ func (s *Server) Run(port string, handler http.Handler) error {
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 	}
+	l, _ := net.Listen("tcp4", s.httpServer.Addr)
 
-	return s.httpServer.ListenAndServe()
+	return s.httpServer.Serve(l)
 }
 
 func (s *Server) Shutdown(ctx context.Context) error {
