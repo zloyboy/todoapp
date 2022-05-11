@@ -3,7 +3,8 @@ package config
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
+
+	"github.com/sirupsen/logrus"
 )
 
 type Config struct {
@@ -21,12 +22,12 @@ func ReadConfig(path string) Config {
 	var cfg Config
 	if content, err := ioutil.ReadFile(path); err == nil {
 		if err = json.Unmarshal(content, &cfg); err == nil {
-			log.Println(cfg)
+			logrus.Println(cfg)
 		}
 	}
 
 	if err != nil {
-		log.Printf("ReadJson err: %s", err.Error())
+		logrus.Printf("ReadJson err: %s", err.Error())
 	}
 
 	return cfg

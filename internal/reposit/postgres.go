@@ -2,9 +2,9 @@ package reposit
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/sirupsen/logrus"
 	"github.com/zloyboy/todoapp/config"
 )
 
@@ -20,6 +20,6 @@ func NewPostgresDB(cfg config.Config) (*sqlx.DB, error) {
 		return nil, err
 	}
 
-	log.Print("db ping ok")
+	logrus.Print("db ping ok")
 	return db, nil
 }
